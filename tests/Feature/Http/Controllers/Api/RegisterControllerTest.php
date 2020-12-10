@@ -18,7 +18,7 @@ class RegisterControllerTest extends TestCase
     public function can_register_new_user()
 
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $response = $this->json('POST', '/api/register', [
             'email' => 'test@test.com',
@@ -27,18 +27,18 @@ class RegisterControllerTest extends TestCase
         ]);
 
         $response->assertJsonStructure([
-            'email', 'created_at'
-        ])
-        ->assertJson([
-            'email' => 'test@test.com'
-        ])
-        ->assertStatus(201);
+                'email', 'created_at'
+            ])
+            ->assertJson([
+                'email' => 'test@test.com'
+            ])
+            ->assertStatus(201);
 
         $this->assertDatabaseHas('users', [
             'email' => 'test@test.com'
         ]);
 
-        \Log::info(1, [$response->getContent()]);
+        // \Log::info(1, [$response->getContent()]);
     }
 
     /**
