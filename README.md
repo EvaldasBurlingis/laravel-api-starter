@@ -12,7 +12,7 @@ This starter has only register/login api routes and absolutely nothing else.
 
 ## Authentication
 
-- (Laravel sanctum)[https://laravel.com/docs/8.x/sanctum]
+- [Laravel sanctum](https://laravel.com/docs/8.x/sanctum)
 
 ---
 
