@@ -27,10 +27,12 @@ class RegisterControllerTest extends TestCase
         ]);
 
         $response->assertJsonStructure([
-                'email', 'created_at'
+                'data'
             ])
             ->assertJson([
-                'email' => 'test@test.com'
+                'data' => [
+                    'email' => 'test@test.com'
+                ]
             ])
             ->assertStatus(201);
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\User as UserResource;
 use App\Repository\Interfaces\UserRepositoryInterface;
 
@@ -16,13 +16,13 @@ class RegisterController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function store(UserStoreRequest $request)
+    public function store(RegisterRequest $request)
     {
 
         $validated = $request->validated();
 
         $user = $this->userRepository->create($request->email, $request->password);
 
-        return response()->json(new UserResource($user), 201);
+        return response()->json(['data' => new UserResource($user)], 201);
     }
 }
