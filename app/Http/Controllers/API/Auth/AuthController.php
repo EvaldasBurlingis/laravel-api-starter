@@ -22,7 +22,7 @@ class AuthController extends Controller
 
     /**
      * 
-     * Register new users
+     * Register new user
      */
     public function register(RegisterRequest $request)
     {
@@ -34,7 +34,7 @@ class AuthController extends Controller
 
     /**
      * 
-     * Login users
+     * Login user
      */
     public function login(LoginRequest $request)
     {
@@ -52,5 +52,16 @@ class AuthController extends Controller
             'data' => new UserResource($user),  
             'authToken' => $authToken
         ], 200);
+    }
+
+    /**
+     * 
+     * Logout user
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['data' => ['message' => 'User logged out successfully']], 200);
     }
 }

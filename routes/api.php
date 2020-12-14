@@ -17,6 +17,7 @@ use App\Http\Controllers\API\Auth\AuthController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 // Private route to test if authentication works
 Route::middleware('auth:sanctum')->get('/demo', function(Request $request) {
