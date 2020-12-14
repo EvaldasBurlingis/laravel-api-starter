@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\Auth\LoginController;
-use App\Http\Controllers\API\Auth\RegisterController;
+use App\Http\Controllers\API\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +15,10 @@ use App\Http\Controllers\API\Auth\RegisterController;
 |
 */
 
-Route::post('/register', [RegisterController::class, 'store']);
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// Private route to test if authentication works
+Route::middleware('auth:sanctum')->get('/demo', function(Request $request) {
+    return response()->json(['hello from private rotue'], 200);
+});

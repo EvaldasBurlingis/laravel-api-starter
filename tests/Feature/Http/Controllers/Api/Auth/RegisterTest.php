@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api;
+namespace Tests\Feature\Http\Controllers\Api\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RegisterControllerTest extends TestCase
+class RegisterTest extends TestCase
 {
 
     use RefreshDatabase;

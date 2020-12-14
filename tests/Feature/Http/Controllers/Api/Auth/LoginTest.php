@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Feature\Http\Controllers\Api;
+namespace Tests\Feature\Http\Controllers\Api\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class LoginControllerTest extends TestCase
+class LoginTest extends TestCase
 {
 
     use RefreshDatabase;

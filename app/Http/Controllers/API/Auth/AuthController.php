@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\User as UserResource;
 use App\Repository\Interfaces\UserRepositoryInterface;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
  
     private $userRepository;
@@ -19,11 +20,24 @@ class LoginController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * 
+     * Register new users
+     */
+    public function register(RegisterRequest $request)
+    {
+        $user = $this->userRepository->create($request->email, $request->password);
+
+        return response()->json(['data' => new UserResource($user)], 201);
+    }
+
+
+    /**
+     * 
+     * Login users
+     */
     public function login(LoginRequest $request)
     {
-
-        $validated = $request->validated();
-
         $user = $this->userRepository->find('email', $request->email);
 
         if( !$user || !Hash::check($request->password, $user->password)) {
